@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>刘正春 · AI 应用工程师 / AI Agent 开发工程师</title>
+  <meta name="author" content="刘正春" />
+  <meta name="description" content="刘正春，AI 应用工程师 / AI Agent 开发工程师，8 年算法工程 + 3 年大模型落地经验，专注企业级 Agent 系统、RAG、LLM 工程化与多智能体协作平台。" />
+  <meta name="keywords" content="AI 应用工程师, AI Agent, LLM, RAG, 大模型, Multi-Agent, 刘正春" />
+  <meta property="og:title" content="刘正春 · AI Agent Engineer" />
+  <meta property="og:description" content="企业级 Agent 系统、RAG、LLM 工程化、多智能体协作平台。" />
+  <meta property="og:type" content="profile" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "刘正春",
+    "alternateName": "Liu Zhengchun",
+    "jobTitle": "AI 应用工程师 / AI Agent 开发工程师",
+    "email": "mailto:lzcmac@163.com",
+    "telephone": "+86-18945018938",
+    "address": { "@type": "PostalAddress", "addressLocality": "深圳", "addressCountry": "CN" },
+    "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "哈尔滨工程大学" }],
+    "knowsAbout": ["AI Agent", "LLM", "RAG", "Multi-Agent Orchestration", "Recommendation System"],
+    "worksFor": { "@type": "Organization", "name": "滴灌通科技(深圳)有限公司" }
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            carbon: '#0f2745',
+            panel: '#eef8ff',
+            line: 'rgba(14, 116, 144, 0.18)',
+            paper: '#0f2745',
+            gold: '#0284c7',
+            mint: '#38bdf8',
+            ember: '#0369a1'
+          },
+          boxShadow: {
+            glow: '0 30px 90px rgba(2, 132, 199, 0.16)',
+            gold: '0 24px 70px rgba(14, 165, 233, 0.22)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root { color-scheme: light; }
+
+    body {
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(56, 189, 248, 0.22), transparent 30rem),
+        radial-gradient(circle at 86% 10%, rgba(14, 165, 233, 0.14), transparent 26rem),
+        linear-gradient(180deg, #f7fcff 0%, #edf8ff 46%, #ffffff 100%);
+    }
+
+    .mono { font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace; }
+
+    .grain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .blueprint {
+      background-image:
+        linear-gradient(rgba(14, 116, 144, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 116, 144, 0.08) 1px, transparent 1px);
+      background-size: 34px 34px;
+    }
+
+    .reveal { animation: rise 720ms ease both; }
+    .reveal-delay-1 { animation-delay: 120ms; }
+    .reveal-delay-2 { animation-delay: 220ms; }
+    .reveal-delay-3 { animation-delay: 320ms; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      border: 1px solid rgba(14, 116, 144, 0.16);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 249, 255, 0.76));
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 80px rgba(15, 39, 69, 0.08);
+    }
+
+    .hairline {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(2, 132, 199, 0.42), transparent);
+    }
+
+    /* nav active state */
+    .nav-link.is-active {
+      color: #0369a1;
+    }
+    .nav-link.is-active::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 4px;
+      background: linear-gradient(90deg, #0284c7, transparent);
+      border-radius: 2px;
+    }
+
+    /* skill chip */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(2, 132, 199, 0.22);
+      background: rgba(255, 255, 255, 0.72);
+      color: #0f2745;
+      font-size: 0.82rem;
+      line-height: 1.2;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .chip:hover {
+      transform: translateY(-1px);
+      border-color: rgba(2, 132, 199, 0.55);
+      background: rgba(224, 242, 254, 0.85);
+    }
+
+    /* timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.65rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(2, 132, 199, 0.55), rgba(2, 132, 199, 0.08));
+      border-radius: 2px;
+    }
+    .timeline-item { position: relative; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.65rem;
+      top: 1.6rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 2px solid #0284c7;
+      box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+    }
+
+    /* metric */
+    .metric-num {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      font-size: 2.1rem;
+      color: #0369a1;
+      letter-spacing: -0.02em;
+    }
+  </style>
+</head>
+
+<body class="grain text-slate-900 antialiased">
+  <header class="sticky top-0 z-40 border-b border-line bg-white/82 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+      <a href="#top" class="flex items-center gap-3">
+        <span class="grid h-9 w-9 place-items-center rounded-full border border-sky-300 bg-sky-50 text-sm font-black text-sky-700">LZC</span>
+        <span class="text-sm tracking-[0.28em] text-slate-700">LIU ZHENGCHUN</span>
+      </a>
+      <div class="hidden items-center gap-7 text-sm text-slate-600 md:flex">
+        <a class="nav-link transition hover:text-sky-700" href="#profile" data-section="profile">定位</a>
+        <a class="nav-link transition hover:text-sky-700" href="#project" data-section="project">项目</a>
+        <a class="nav-link transition hover:text-sky-700" href="#experience" data-section="experience">经历</a>
+        <a class="nav-link transition hover:text-sky-700" href="#education" data-section="education">教育</a>
+        <a class="nav-link transition hover:text-sky-700" href="#skills" data-section="skills">技能</a>
+        <a class="nav-link transition hover:text-sky-700" href="#contact" data-section="contact">联系</a>
+      </div>
+      <button id="menuBtn" aria-label="切换菜单" aria-expanded="false" class="grid h-10 w-10 place-items-center rounded-full border border-sky-200 bg-white/70 text-sky-700 transition hover:border-sky-400 md:hidden">
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="hidden border-t border-line bg-white/95 backdrop-blur-xl md:hidden">
+      <div class="mx-auto flex max-w-7xl flex-col px-5 py-3 text-sm text-slate-700">
+        <a class="border-b border-line/60 py-3" href="#profile">定位</a>
+        <a class="border-b border-line/60 py-3" href="#project">项目</a>
+        <a class="border-b border-line/60 py-3" href="#experience">经历</a>
+        <a class="border-b border-line/60 py-3" href="#education">教育</a>
+        <a class="border-b border-line/60 py-3" href="#skills">技能</a>
+        <a class="py-3" href="#contact">联系</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="blueprint relative overflow-hidden">
+      <div class="absolute inset-x-0 top-24 mx-auto h-72 max-w-3xl rounded-full bg-sky-200/60 blur-3xl"></div>
+      <div class="mx-auto grid min-h-[calc(100vh-74px)] max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <p class="mono reveal mb-5 text-xs uppercase tracking-[0.42em] text-sky-600">AI Application · Agent Engineering</p>
+          <h1 class="reveal reveal-delay-1 max-w-4xl text-5xl font-black leading-tight text-paper sm:text-6xl lg:text-7xl">
+            把 Agent 从聊天框<br />
+            推进到真实业务流程
+          </h1>
+          <p class="reveal reveal-delay-2 mt-7 max-w-2xl text-lg leading-9 text-slate-600">
+            8 年算法工程 · 3 年大模型落地。<br />
+            把企业级 Agent 从 Demo 推进到可路由、可降级、可恢复的生产系统。
+          </p>
+          <div class="reveal reveal-delay-3 mt-9 flex flex-wrap gap-3">
+            <a href="#project" class="rounded-full bg-sky-600 px-6 py-3 text-sm font-bold text-white shadow-gold transition hover:-translate-y-0.5 hover:bg-sky-700">查看代表项目</a>
+            <a href="https://github.com/zhengchunliu/myself/blob/main/docs/%E5%88%98%E6%AD%A3%E6%98%A5-AI%E5%BA%94%E7%94%A8%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88-%E7%AE%80%E5%8E%86.md" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/70 px-6 py-3 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:border-sky-400 hover:text-sky-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              完整简历
+            </a>
+            <a href="mailto:lzcmac@163.com" class="rounded-full border border-sky-200 bg-white/70 px-6 py-3 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:border-sky-400 hover:text-sky-700">联系我</a>
+          </div>
+        </div>
+
+        <aside class="reveal reveal-delay-2 card relative rounded-[2rem] p-6 shadow-glow">
+          <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full border border-sky-300/70"></div>
+          <div class="absolute -bottom-10 -left-10 h-36 w-36 rounded-full border border-sky-200"></div>
+          <div class="relative">
+            <div class="flex items-start justify-between gap-4 border-b border-line pb-5">
+              <div>
+                <p class="mono text-xs uppercase tracking-[0.28em] text-slate-500">Current Focus</p>
+                <h2 class="mt-2 text-2xl font-bold text-paper">企业级 Agent 调度平台</h2>
+              </div>
+              <span class="mono rounded-full border border-sky-300 bg-sky-50 px-3 py-1 text-xs text-sky-700">2025+</span>
+            </div>
+
+            <div class="mt-6 grid gap-4">
+              <div class="rounded-2xl border border-line bg-white/72 p-4">
+                <p class="mono text-xs uppercase tracking-[0.18em] text-sky-700">Architecture</p>
+                <p class="mt-2 text-slate-600">SuperAgent 调度、Agent Runtime、Agent Harness、A2A 协议、Hybrid Dispatch、Domain EventBus</p>
+              </div>
+              <div class="rounded-2xl border border-line bg-white/72 p-4">
+                <p class="mono text-xs uppercase tracking-[0.18em] text-sky-700">LLM Stack</p>
+                <p class="mt-2 text-slate-600">Function Calling、ReAct、Tool Registry、RAG、长短期记忆、流式卡片协议</p>
+              </div>
+              <div class="rounded-2xl border border-line bg-white/72 p-4">
+                <p class="mono text-xs uppercase tracking-[0.18em] text-sky-700">Engineering</p>
+                <p class="mt-2 text-slate-600">Python、FastAPI、SQLAlchemy、MySQL、SSE、React、TypeScript、Docker</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="profile" class="mx-auto max-w-7xl px-5 py-20">
+      <div class="hairline mb-12"></div>
+      <div class="grid gap-6 md:grid-cols-12">
+        <article class="card relative col-span-12 overflow-hidden rounded-3xl p-8 md:col-span-6">
+          <div class="absolute right-6 top-6 hidden text-right md:block">
+            <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">Highlights</p>
+          </div>
+          <p class="mono text-sm text-sky-700">01 · Snapshot</p>
+          <h3 class="mt-5 text-2xl font-bold text-paper">能力链路一图概览</h3>
+          <div class="mt-6 grid grid-cols-3 gap-4">
+            <div>
+              <p class="metric-num">8<span class="ml-1 text-base font-semibold text-slate-500">年</span></p>
+              <p class="mt-1 text-sm text-slate-600">算法 + 工程化经验</p>
+            </div>
+            <div>
+              <p class="metric-num">3<span class="ml-1 text-base font-semibold text-slate-500">年</span></p>
+              <p class="mt-1 text-sm text-slate-600">大模型应用一线落地</p>
+            </div>
+            <div>
+              <p class="metric-num">4<span class="ml-1 text-base font-semibold text-slate-500">家</span></p>
+              <p class="mt-1 text-sm text-slate-600">阿里 / 快手 / 爱奇艺 / 滴灌通</p>
+            </div>
+          </div>
+          <p class="mt-6 leading-7 text-slate-600">从推荐 / 搜索算法工程师，成长为企业级 Agent 平台核心开发；具备算法理解、后端服务到系统抽象的完整能力链路。</p>
+        </article>
+
+        <article class="card col-span-12 rounded-3xl p-6 md:col-span-6 lg:col-span-3">
+          <p class="mono text-sm text-sky-700">02</p>
+          <h3 class="mt-5 text-xl font-bold text-paper">端到端工程落地</h3>
+          <p class="mt-4 leading-7 text-slate-600">独立负责过 SuperAgent、Agent Runtime、A2A、多轮协商、人机混合调度、Server-Driven UI 等核心模块。</p>
+        </article>
+
+        <article class="card col-span-12 rounded-3xl p-6 md:col-span-6 lg:col-span-3">
+          <p class="mono text-sm text-sky-700">03</p>
+          <h3 class="mt-5 text-xl font-bold text-paper">协议级抽象</h3>
+          <p class="mt-4 leading-7 text-slate-600">习惯把业务问题拆解为协议、状态机和可复用模块,关注路由降级、双轨兜底、熔断回流等生产细节。</p>
+        </article>
+
+        <article class="card col-span-12 rounded-3xl p-6 md:col-span-6 lg:col-span-3">
+          <p class="mono text-sm text-sky-700">04</p>
+          <h3 class="mt-5 text-xl font-bold text-paper">RAG 与垂直问答</h3>
+          <p class="mt-4 leading-7 text-slate-600">熟悉意图识别、实体抽取、文档切片、向量召回、重排和领域微调,落地过体育领域智能问答系统。</p>
+        </article>
+
+        <article class="card col-span-12 rounded-3xl p-6 md:col-span-6 lg:col-span-3">
+          <p class="mono text-sm text-sky-700">05</p>
+          <h3 class="mt-5 text-xl font-bold text-paper">推荐系统积淀</h3>
+          <p class="mt-4 leading-7 text-slate-600">独立搭建过首页信息流与竖屏联播推荐系统,落地 DSSM / Wide&amp;Deep / DeepFM / DIN 等召回与排序模型。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="project" class="relative py-20 text-carbon">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-sky-50/50 to-transparent"></div>
+      <div class="mx-auto max-w-7xl px-5">
+        <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="mono text-xs uppercase tracking-[0.42em] text-sky-700">Featured Projects</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">代表项目</h2>
+          </div>
+          <p class="max-w-xl leading-8 text-slate-600">两个最能代表能力曲线的项目:企业级 Agent 平台的系统抽象能力,以及体育内容推荐系统的算法工程落地能力。</p>
+        </div>
+
+        <!-- Project 1: Enterprise Agent Platform -->
+        <div class="card rounded-3xl p-8 md:p-10">
+          <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+            <div>
+              <span class="mono inline-block rounded-full border border-sky-300 bg-sky-50 px-3 py-1 text-xs text-sky-700">2025.04 - 至今</span>
+              <h3 class="mt-4 text-3xl font-black leading-tight text-paper sm:text-4xl">企业级 Agent 调度平台</h3>
+              <p class="mono mt-2 text-xs uppercase tracking-[0.28em] text-slate-500">Agent 系统核心开发 / 架构设计</p>
+              <p class="mt-5 leading-8 text-slate-700">
+                面向集团内部 HR 服务、任务派发、工分激励、员工协作与管理驾驶舱等场景,构建企业级 Agent 调度平台。把人、数字分身、Service Agent、系统能力统一抽象为可调度对象,由 SuperAgent 完成理解 → 路由 → 拆解 → 协商 → 执行 → 回流的全链路闭环。
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="chip">FastAPI</span><span class="chip">AgentScope ReAct</span><span class="chip">A2A / A2UI</span><span class="chip">SSE</span><span class="chip">SQLAlchemy</span><span class="chip">asyncio</span>
+              </div>
+            </div>
+            <div class="grid gap-4">
+              <div class="rounded-2xl border border-sky-100 bg-sky-50/70 p-5 shadow-xl shadow-sky-900/5">
+                <h4 class="text-lg font-black">SuperAgent 三层退化路由</h4>
+                <p class="mt-2 leading-7 text-slate-700">设计 Guard → LLM Router → Keyword Fallback 路由机制,把 System / User / Service Agent 纳入统一候选池;在 LLM 超时或低置信时自动降级或返回澄清卡片。</p>
+              </div>
+              <div class="rounded-2xl border border-sky-100 bg-sky-50/70 p-5 shadow-xl shadow-sky-900/5">
+                <h4 class="text-lg font-black">Agent Runtime + Harness</h4>
+                <p class="mt-2 leading-7 text-slate-700">基于 AgentScope ReActAgent 统一模型初始化、记忆桥接、工具上下文和 SSE 增量解析;把 Runtime 事件流转换为前端卡片化协议。</p>
+              </div>
+              <div class="rounded-2xl border border-sky-100 bg-sky-50/70 p-5 shadow-xl shadow-sky-900/5">
+                <h4 class="text-lg font-black">A2A 协作 &amp; Hybrid Dispatch</h4>
+                <p class="mt-2 leading-7 text-slate-700">落地 Agent Card、跨工作室 Session、多轮协商状态机;LLM Planner 将复杂目标拆解为 DAG,在 Service Agent、数字分身和真人之间做可解释调度。</p>
+              </div>
+              <div class="rounded-2xl border border-sky-100 bg-sky-50/70 p-5 shadow-xl shadow-sky-900/5">
+                <h4 class="text-lg font-black">生产级执行与实时回流</h4>
+                <p class="mt-2 leading-7 text-slate-700">PlanExecutor / JobExecutor / CircuitBreaker / Domain EventBus + SSE 单通道,让任务、协商、调度、工分和 War Room 建议实时回流。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: 爱奇艺体育推荐系统 -->
+        <div class="card mt-6 rounded-3xl p-8 md:p-10">
+          <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+            <div>
+              <span class="mono inline-block rounded-full border border-sky-300 bg-sky-50 px-3 py-1 text-xs text-sky-700">2020.08 - 2024.12</span>
+              <h3 class="mt-4 text-3xl font-black leading-tight text-paper sm:text-4xl">爱奇艺体育 APP 首页信息流推荐服务</h3>
+              <p class="mono mt-2 text-xs uppercase tracking-[0.28em] text-slate-500">推荐算法 / 后端服务 / 模型迭代</p>
+              <p class="mt-5 leading-8 text-slate-700">
+                面向爱奇艺体育 APP 推荐页“猜你喜欢”和短视频 Feed 流场景,从 0 到 1 建设个性化推荐服务,覆盖需求分析、技术方案设计、召回与排序模型训练、推荐后端服务开发、测试部署与持续迭代优化。
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="chip">Feed 推荐</span><span class="chip">多路召回</span><span class="chip">排序模型</span><span class="chip">DSSM</span><span class="chip">Wide&amp;Deep</span><span class="chip">DeepFM</span><span class="chip">DIN</span><span class="chip">AB 实验</span>
+              </div>
+            </div>
+            <div class="grid gap-4">
+              <div class="rounded-2xl border border-sky-100 bg-sky-50/70 p-5 shadow-xl shadow-sky-900/5">
+                <h4 class="text-lg font-black">推荐系统方案设计</h4>
+                <p class="mt-2 leading-7 text-slate-700">与产品团队共同拆解“猜你喜欢”和短视频 Feed 流推荐需求,完成推荐服务功能设计、召回排序链路规划和上线节奏拆分。</p>
+              </div>
+              <div class="rounded-2xl border border-sky-100 bg-sky-50/70 p-5 shadow-xl shadow-sky-900/5">
+                <h4 class="text-lg font-black">召回与排序模型迭代</h4>
+                <p class="mt-2 leading-7 text-slate-700">负责多路召回、排序模型训练与迭代优化,结合 DSSM / Wide&amp;Deep / DeepFM / DIN 等模型提升内容分发的个性化效果。</p>
+              </div>
+              <div class="rounded-2xl border border-sky-100 bg-sky-50/70 p-5 shadow-xl shadow-sky-900/5">
+                <h4 class="text-lg font-black">推荐后端服务落地</h4>
+                <p class="mt-2 leading-7 text-slate-700">独立完成推荐后端服务开发、测试、调试部署和性能优化,成功支撑 APP 首页信息流、竖屏联播和短视频模块推荐场景上线。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="mx-auto max-w-7xl px-5 py-20">
+      <div class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="mono text-xs uppercase tracking-[0.42em] text-sky-700">Experience</p>
+          <h2 class="mt-4 text-4xl font-black text-paper">经历与能力曲线</h2>
+        </div>
+        <p class="max-w-2xl leading-8 text-slate-600">推荐系统 → 搜索问答 → 大模型应用 → 企业级 Agent 平台,是同一条工程能力链路的连续演进。</p>
+      </div>
+
+      <div class="timeline grid gap-5">
+        <article class="timeline-item card rounded-3xl p-6">
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <h3 class="text-2xl font-bold text-paper">滴灌通科技(深圳)有限公司 · 资深 AI 应用开发工程师</h3>
+            <span class="mono text-sm text-sky-700">2025.04 - 至今</span>
+          </div>
+          <p class="mt-4 leading-8 text-slate-600">负责集团 AI 应用与 Agent 平台的技术规划、架构设计与工程落地,主导企业级 Agent 调度平台核心模块建设。</p>
+        </article>
+
+        <article class="timeline-item card rounded-3xl p-6">
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <h3 class="text-2xl font-bold text-paper">爱奇艺体育 · 大模型应用开发工程师 / 推荐算法工程师</h3>
+            <span class="mono text-sm text-sky-700">2020.08 - 2024.12</span>
+          </div>
+          <p class="mt-4 leading-8 text-slate-600">从 0 到 1 搭建大模型应用技术栈,落地垂类知识问答、AI 内容生成、文章翻译重写、智能搜索等场景;同时负责首页信息流与竖屏联播推荐系统。</p>
+        </article>
+
+        <article class="timeline-item card rounded-3xl p-6">
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <h3 class="text-2xl font-bold text-paper">快手 · 算法工程师</h3>
+            <span class="mono text-sm text-sky-700">2020.01 - 2020.07</span>
+          </div>
+          <p class="mt-4 leading-8 text-slate-600">参与快手 APP 同城页短视频推荐算法研发与策略优化,负责推荐策略迭代、特征分析与 AB 实验效果评估。</p>
+        </article>
+
+        <article class="timeline-item card rounded-3xl p-6">
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <h3 class="text-2xl font-bold text-paper">阿里本地生活(饿了么)· 算法工程师</h3>
+            <span class="mono text-sm text-sky-700">2018.04 - 2020.01</span>
+          </div>
+          <p class="mt-4 leading-8 text-slate-600">负责蜂鸟众包智能配送调度核心算法研发与策略优化,参与配送路径优化、运力调度等核心项目。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="education" class="mx-auto max-w-7xl px-5 py-20">
+      <div class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="mono text-xs uppercase tracking-[0.42em] text-sky-700">Education</p>
+          <h2 class="mt-4 text-4xl font-black text-paper">教育背景</h2>
+        </div>
+        <p class="max-w-xl leading-8 text-slate-600">哈尔滨工程大学 · 软件工程硕士 / 信息与计算科学学士。</p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="card rounded-3xl p-6">
+          <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">Master</p>
+          <h3 class="mt-3 text-2xl font-bold text-paper">哈尔滨工程大学</h3>
+          <p class="mt-2 text-slate-600">硕士 · 软件工程</p>
+          <p class="mono mt-3 text-sm text-sky-700">2015.09 - 2018.03</p>
+        </article>
+        <article class="card rounded-3xl p-6">
+          <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">Bachelor</p>
+          <h3 class="mt-3 text-2xl font-bold text-paper">哈尔滨工程大学</h3>
+          <p class="mt-2 text-slate-600">学士 · 信息与计算科学</p>
+          <p class="mono mt-3 text-sm text-sky-700">2011.09 - 2015.07</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="bg-sky-50/80 py-20">
+      <div class="mx-auto max-w-7xl px-5">
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p class="mono text-xs uppercase tracking-[0.42em] text-sky-700">Stack</p>
+            <h2 class="mt-4 text-4xl font-black text-paper">专业技能</h2>
+          </div>
+          <p class="max-w-xl leading-8 text-slate-600">围绕 LLM 应用 · Agent 工程 · RAG · 后端架构 · 算法数据 五条主线展开。</p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article class="card rounded-3xl p-6">
+            <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">LLM Application</p>
+            <h3 class="mt-3 text-xl font-bold text-paper">大模型应用</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Prompt Engineering</span><span class="chip">System Prompt</span><span class="chip">Function Calling</span><span class="chip">ReAct</span><span class="chip">Tool Registry</span><span class="chip">长短期记忆</span><span class="chip">流式卡片</span>
+            </div>
+          </article>
+          <article class="card rounded-3xl p-6">
+            <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">Agent Engineering</p>
+            <h3 class="mt-3 text-xl font-bold text-paper">Agent 工程</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Multi-Agent</span><span class="chip">SuperAgent 路由</span><span class="chip">A2A</span><span class="chip">多轮协商</span><span class="chip">DAG 编排</span><span class="chip">Hybrid Dispatch</span><span class="chip">熔断兜底</span><span class="chip">Server-Driven UI</span>
+            </div>
+          </article>
+          <article class="card rounded-3xl p-6">
+            <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">RAG &amp; Search</p>
+            <h3 class="mt-3 text-xl font-bold text-paper">RAG 与搜索问答</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">知识库构建</span><span class="chip">文档切片</span><span class="chip">Embedding</span><span class="chip">向量检索</span><span class="chip">语义召回</span><span class="chip">Rerank</span><span class="chip">意图识别</span><span class="chip">实体抽取</span><span class="chip">领域微调</span>
+            </div>
+          </article>
+          <article class="card rounded-3xl p-6">
+            <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">Backend &amp; Architecture</p>
+            <h3 class="mt-3 text-xl font-bold text-paper">后端与架构</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">SQLAlchemy</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">SSE</span><span class="chip">JWT</span><span class="chip">asyncio</span><span class="chip">Docker</span><span class="chip">Jenkins</span>
+            </div>
+          </article>
+          <article class="card rounded-3xl p-6">
+            <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">Algorithm &amp; Data</p>
+            <h3 class="mt-3 text-xl font-bold text-paper">算法与数据</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Transformer / BERT / GPT</span><span class="chip">DSSM</span><span class="chip">Wide&amp;Deep</span><span class="chip">DeepFM</span><span class="chip">DIN</span><span class="chip">Graph Embedding</span><span class="chip">Spark</span><span class="chip">Hadoop</span><span class="chip">Hive</span>
+            </div>
+          </article>
+          <article class="card rounded-3xl p-6">
+            <p class="mono text-xs uppercase tracking-[0.24em] text-sky-700">Mindset</p>
+            <h3 class="mt-3 text-xl font-bold text-paper">工程理念</h3>
+            <p class="mt-3 leading-7 text-slate-600">协议先于代码 · 状态机先于流程图 · 降级先于兜底;把 Agent 从 Demo 推进到可观测、可恢复的生产系统。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="border-t border-line px-5 py-12">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-6 md:flex-row md:items-center">
+      <div>
+        <p class="mono text-xs uppercase tracking-[0.36em] text-slate-500">Contact</p>
+        <h2 class="mt-3 text-3xl font-black text-paper">期待讨论 AI Agent 的真实落地问题</h2>
+        <p class="mt-2 text-sm text-slate-500">深圳 · 可远程 / 出差</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="mailto:lzcmac@163.com" class="rounded-full bg-sky-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-sky-700">lzcmac@163.com</a>
+        <a href="tel:18945018938" class="rounded-full border border-sky-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:border-sky-400 hover:text-sky-700">18945018938</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // mobile menu toggle
+    (function () {
+      var btn = document.getElementById('menuBtn');
+      var menu = document.getElementById('mobileMenu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function () {
+        var open = menu.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      menu.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
+    // scroll spy: highlight current section in top nav
+    (function () {
+      var links = document.querySelectorAll('.nav-link');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var map = {};
+      links.forEach(function (l) { map[l.dataset.section] = l; });
+      var sections = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            links.forEach(function (l) { l.classList.remove('is-active'); });
+            var link = map[entry.target.id];
+            if (link) link.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(function (s) { io.observe(s); });
+    })();
+  </script>
+</body>
+</html>
