@@ -57,6 +57,7 @@
 **项目定位**：面向集团内部 HR 服务、任务派发、工分激励、员工协作和管理驾驶舱等场景，构建企业级 Agent 调度平台。平台将人、数字分身、Service Agent、系统能力统一抽象为可调度对象，使用户通过单一对话入口表达目标后，由系统完成理解、路由、拆解、协商、执行与结果回流。
 
 **技术栈**：Python、FastAPI、AgentScope ReActAgent、OpenAI 兼容 LLM、Function Calling、A2A / A2UI 协议、SQLAlchemy、MySQL、asyncio、SSE、React 18、TypeScript、Docker、Jenkins。
+
 **核心贡献**
 - **设计企业级 Agent 调度架构**：将平台拆分为 SuperAgent 调度层、Agent Runtime 执行层、Tool / Skill 能力层、A2A 协作层、Hybrid Dispatch 编排层和 Domain EventBus 事件层，使 Agent 从"问答助手"升级为可驱动任务、工单、外部服务和数字分身协作的业务执行系统。
 - **落地 SuperAgent 三层退化路由**：设计 `Guard → LLM Router → Keyword Fallback` 路由机制，将 System Agent、User Agent、Service Agent 纳入统一候选池；在 LLM 超时、低置信和路由不明确时自动降级或返回澄清卡片，提升复杂业务入口的稳定性。
