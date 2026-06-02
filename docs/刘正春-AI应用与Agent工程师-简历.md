@@ -65,7 +65,7 @@
 - **实现 A2A 数字分身协作能力**：落地 Agent Card 动态生成、能力发现、跨工作室 Session、Auto Responder 与多轮协商状态机，使员工数字分身能够参与"任务邀约 - 讨论 - 接受/拒绝"的业务闭环。
 - **设计 Hybrid Dispatch 人机混合调度链路**：由 LLM Planner 将复杂目标拆解为 DAG，再按 Service Agent 精确匹配、语义匹配、数字分身协商、真人技能匹配、人工指定五级优先级选择执行者，并输出匹配分数、预估耗时和决策原因，支持前端可解释预览。
 - **建设生产级执行与实时回流机制**：实现 PlanExecutor 拓扑调度、JobExecutor 同步/异步调用、Service Agent 回调、CircuitBreaker 熔断、结果聚合和失败接管入口；通过 asyncio Domain EventBus + SSE 单通道向前端实时推送任务、协商、调度、工分和 War Room 建议等事件。
-- **推动能力扩展与架构演进**：设计 `Skill = Prompt + Tools + Dynamic Context + Suggestions` 的自包含能力模型，降低新增 Agent 能力成本；推进 Studio Factory 子模块化和 PyMySQL 到 SQLAlchemy Repository 的渐进迁移，使平台在快速迭代中保持模块边界清晰。
+- **推动能力扩展与架构演进**：设计 `Skill = Prompt + Tools + Dynamic Context + Suggestions` 的自包含能力模型，降低新增 Agent 能力成本。
 
 **项目价值**：沉淀出可复用的 Agent 路由、工具调用、协议协作、任务编排、事件回流和工程兜底能力，为企业知识问答、流程自动化、管理驾驶舱与跨系统 Agent 集成提供统一技术底座。
 
